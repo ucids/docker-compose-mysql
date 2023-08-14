@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: ktz
+      MYSQL_USER: ucid
+      MYSQL_PASSWORD: 1974
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d"
+    networks:
+      - lamp-docker
+    ports:
+      - 5100:3306
+    restart: unless-stopped
+
+networks:
+  lamp-docker:
+    driver: bridge
